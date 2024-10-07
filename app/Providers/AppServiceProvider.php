@@ -12,7 +12,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $serviceBindings = $this->serviceBindings();
+        foreach ($serviceBindings as $key => $val) {
+            $this->app->bind($key, $val);
+        }
     }
 
     /**
@@ -21,5 +24,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         IlluminateSchema::defaultStringLength(255);
+    }
+
+    private function serviceBindings()
+    {
+        return [
+            "App\Services\Interfaces\UserServiceInterface" =>
+            "App\Services\UserService",
+            "App\Repositories\Interfaces\UserRepositoryInterface" =>
+            "App\Repositories\UserRepository",
+        ];
     }
 }
