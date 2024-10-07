@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 /* DASHBOARD ROUTE */
 
-Route::get("dasboard", [DashboardController::class, "index"])
+Route::get("dashboard", [DashboardController::class, "index"])
     ->name("dashboard.index")
     ->middleware(AuthenticateMiddleware::class);
 
